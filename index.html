@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Networks Gross Margin Bridge | Anna Tran</title>
+<style>
+  :root { --navy:#0C2340; --blue:#1174E6; --red:#C8102E; --grey:#5B6B82; --bg:#F3F5F8; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Calibri, Arial, sans-serif; color:#1A1A1A; line-height:1.55; background:#fff; }
+  main { max-width:860px; margin:0 auto; padding:40px 20px 60px; }
+  .kicker { color:var(--blue); font-weight:700; font-size:13px; letter-spacing:1px; text-transform:uppercase; margin:0; }
+  h1 { color:var(--navy); font-size:32px; line-height:1.2; margin:6px 0 10px; }
+  h2 { color:var(--navy); font-size:21px; margin:36px 0 10px; }
+  .meta { color:var(--grey); margin:0 0 20px; }
+  .note { background:var(--bg); border-radius:8px; padding:14px 18px; color:var(--grey); font-size:15px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin:18px 0; }
+  .stat { background:var(--bg); border-radius:8px; padding:16px; }
+  .stat b { display:block; font-size:28px; color:var(--red); }
+  .stat span { font-size:14px; }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #D5DBE3; }
+  th { background:var(--navy); color:#fff; }
+  td.num { color:var(--red); font-weight:700; white-space:nowrap; }
+  img { width:100%; border:1px solid #D5DBE3; border-radius:6px; margin:10px 0 18px; }
+  .btn { display:inline-block; background:var(--navy); color:#fff; text-decoration:none; padding:10px 16px; border-radius:6px; margin:4px 8px 4px 0; font-weight:700; }
+  .btn.alt { background:var(--blue); }
+  a { color:var(--blue); }
+  footer { color:var(--grey); font-size:14px; margin-top:40px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Commercial analytics case study</p>
+  <h1>Sales grew 21%, but gross margin fell 2.4 points. Why?</h1>
+  <p class="meta">Anna Tran · Excel, PowerPoint · 2026</p>
+  <p class="note">All deal data in this project is simulated and illustrative. It is not Ericsson data. Public Ericsson figures come from the Second quarter report 2026.</p>
+
+  <h2>The question</h2>
+  <p>In its Q2 2026 report, Ericsson said Networks gross margin would come under pressure in Q3 because of more network rollout projects and higher component costs. I wanted to practise the question a commercial analyst gets in that situation: when sales go up but margin goes down, how much is product mix, how much is price, and how much is cost?</p>
+
+  <h2>What I built</h2>
+  <p>A simulated portfolio of 123 deal lines sold to fictional operators across four market areas, in two quarters. Each deal mixes radio hardware, RAN software, rollout services and support services, with list price, discount and unit cost. The Excel model then:</p>
+  <ul>
+    <li>splits the change in gross margin into mix, price and cost effects that add up exactly to the total change</li>
+    <li>compares average discounts by market area and product line between the two quarters</li>
+    <li>feeds a waterfall chart, and lets you compare any two quarters by changing two cells</li>
+  </ul>
+
+  <h2>Findings</h2>
+  <div class="stats">
+    <div class="stat"><b>−1.1 pp</b><span>Mix: rollout services rose from 13% to 15% of sales, at a 15% margin</span></div>
+    <div class="stat"><b>−0.5 pp</b><span>Price: deeper hardware discounts in South East Asia, Oceania &amp; India; software discounts in EMEA</span></div>
+    <div class="stat"><b>−0.7 pp</b><span>Cost: radio hardware unit cost rose 2.7%, and prices did not follow</span></div>
+  </div>
+
+  <h2>Method</h2>
+  <table>
+    <tr><th>Effect</th><th>Formula (per product line)</th></tr>
+    <tr><td>Mix</td><td>(share of sales B − share A) × (product line margin A − total margin A)</td></tr>
+    <tr><td>Price</td><td>share B × (margin at B price and A unit cost − margin A)</td></tr>
+    <tr><td>Cost</td><td>share B × (margin B − margin at B price and A unit cost)</td></tr>
+  </table>
+  <p>Limitation: the price effect also picks up shifts in deal mix within a product line, for example more volume from a market with deeper discounts. The Discounts sheet shows where that comes from.</p>
+
+  <h2>Recommendation</h2>
+  <p>Protect software price while rollout volume grows: price software on its own in rollout deals, set discount limits by market area, and pass rising component costs into price levels and contract terms. Before acting on real data, I would check margin over the life of the customer, since rollout deals often lead to years of software and support revenue.</p>
+
+  <h2>Slides</h2>
+  <img src="images/slide-1.png" alt="Slide 1: sales grew 21%, but gross margin fell 2.4 points">
+  <img src="images/slide-2.png" alt="Slide 2: gross margin bridge waterfall showing mix, price and cost effects">
+  <img src="images/slide-3.png" alt="Slide 3: three pricing recommendations">
+
+  <h2>Files</h2>
+  <a class="btn" href="Ericsson_Networks_Margin_Bridge.xlsx">Download Excel model</a>
+  <a class="btn alt" href="Ericsson_Networks_Margin_Bridge.pptx">Download slides</a>
+
+  <footer>Anna Tran · <a href="https://tran23qi.github.io">Portfolio</a> · <a href="https://www.linkedin.com/in/annaa-tran/">LinkedIn</a></footer>
+</main>
+</body>
+</html>
